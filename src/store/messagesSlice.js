@@ -1,20 +1,20 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const fetchAllMessages = createAsyncThunk(
-  'messages/fetchAllMessages',
+  "messages/fetchAllMessages",
   async () => {
     try {
-      const { data } = await axios.get('/api/messages');
+      const { data } = await axios.get("/api/messages");
       return data;
     } catch (err) {
-      console.error('Trouble fetching all messages: ', err.message);
+      console.error("Trouble fetching all messages: ", err.message);
     }
   }
 );
 
 const allMessagesSlice = createSlice({
-  name: 'messages',
+  name: "messages",
   initialState: [],
   extraReducers: (builder) => {
     builder.addCase(fetchAllMessages.fulfilled, (state, { payload }) => {
